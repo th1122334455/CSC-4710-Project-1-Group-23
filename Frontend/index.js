@@ -91,7 +91,7 @@ addBtn.onclick = function (){
 }
 
 // when the username button is clicked
-const useridBtn =  document.getElementById('userid-btn');
+const useridBtn = document.getElementById('userid-btn');
 useridBtn.onclick = function (){
     const searchFeedback = document.querySelector("search-feedback");
     searchFeedback.textContent = "aa";
