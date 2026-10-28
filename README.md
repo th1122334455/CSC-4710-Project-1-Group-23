@@ -6,7 +6,7 @@ Members: Thomas Errico-Seaman, Abubakar Babatunde
 In Xampp, run Apache and MySQL, and create a new database titled 'project1db'.
 
 Use this SQL code to create the Users table in the project1db database:
---
+
 CREATE TABLE Users(
    username VARCHAR(50) primary key,
    password VARCHAR(50),
@@ -17,4 +17,8 @@ CREATE TABLE Users(
    registerday DATE,
    signintime DATETIME
 ) 
---
+
+
+Enter the Backend folder in the repository and run npm start.
+
+Finally, go to http://localhost/database_javascript/project1/Frontend/signin.html to access the website.
