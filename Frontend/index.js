@@ -90,10 +90,10 @@ addBtn.onclick = function (){
     .then(data => insertRowIntoTable(data['data']));
 }
 
-// when the searchBtn is clicked
-const searchBtn =  document.querySelector('#search-btn');
-searchBtn.onclick = function (){
-    const searchInput = document.querySelector('#search-input');
+// when the username button is clicked
+const useridBtn =  document.querySelector('#userid-btn');
+useridBtn.onclick = function (){
+    const searchInput = document.querySelector('#general-input');
     const searchValue = searchInput.value;
     searchInput.value = "";
 
