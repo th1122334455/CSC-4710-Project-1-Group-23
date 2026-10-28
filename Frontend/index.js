@@ -91,15 +91,17 @@ addBtn.onclick = function (){
 }
 
 // when the username button is clicked
-const useridBtn =  document.querySelector('#userid-btn');
+const useridBtn =  document.getElementById('userid-btn');
 useridBtn.onclick = function (){
+    const searchFeedback = document.querySelector("search-feedback");
+    searchFeedback.textContent = "aa";
     const searchInput = document.querySelector('#general-input');
     const searchValue = searchInput.value;
     searchInput.value = "";
-
+        /*
     fetch('http://localhost:5050/search/' + searchValue)
     .then(response => response.json())
-    .then(data => loadHTMLTable(data['data']));
+    .then(data => loadHTMLTable(data['data']));*/
 }
 
 let rowToDelete; 
