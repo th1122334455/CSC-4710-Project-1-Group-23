@@ -212,6 +212,28 @@ sameBtn.onclick = function (){
     .then(data => loadHTMLTable(data['data']));
 }
 
+// when the registered today button is clicked
+const todayBtn = document.getElementById('today-btn');
+todayBtn.onclick = function (){
+    const searchFeedback = document.getElementById("search-feedback");
+    searchFeedback.textContent = "Searching for users who registered today";
+        
+    fetch('http://localhost:5050/searchtoday')
+    .then(response => response.json())
+    .then(data => loadHTMLTable(data['data']));
+}
+
+// when the never signed in button is clicked
+const neverBtn = document.getElementById('never-btn');
+neverBtn.onclick = function (){
+    const searchFeedback = document.getElementById("search-feedback");
+    searchFeedback.textContent = "Searching for users who never signed in";
+        
+    fetch('http://localhost:5050/searchnever')
+    .then(response => response.json())
+    .then(data => loadHTMLTable(data['data']));
+}
+
 let rowToDelete; 
 
 /* when the delete button is clicked, since it is not part of the DOM tree, we need to do it differently

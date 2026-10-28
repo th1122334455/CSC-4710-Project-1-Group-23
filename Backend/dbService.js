@@ -214,7 +214,7 @@ class DbService{
              // use await to call an asynchronous function
              const response = await new Promise((resolve, reject) => 
                   {
-                     const query = "SELECT * FROM users WHERE registerday < (SELECT registerday FROM users WHERE username = ?);";
+                     const query = "SELECT * FROM users WHERE registerday > (SELECT registerday FROM users WHERE username = ?);";
                      
                      connection.query(query, [user], (err, results) => {
                          if(err) reject(new Error(err.message));
@@ -240,6 +240,53 @@ class DbService{
                      const query = "SELECT * FROM users WHERE registerday = (SELECT registerday FROM users WHERE username = ?);";
                      
                      connection.query(query, [user], (err, results) => {
+                         if(err) reject(new Error(err.message));
+                         else resolve(results);
+                     });
+                  }
+             );
+
+             // console.log(response);  // for debugging to see the result of select
+             return response;
+
+         }  catch(error){
+            console.log(error);
+         }
+   }
+
+   async searchRegisteredToday(){
+        try{
+             const dateToday= new Date();
+             dateToday.setHours(0,0,0,0);
+             // use await to call an asynchronous function
+             const response = await new Promise((resolve, reject) => 
+                  {
+                     const query = "SELECT * FROM users WHERE registerday = ?;";
+                     
+                     connection.query(query, [dateToday], (err, results) => {
+                         if(err) reject(new Error(err.message));
+                         else resolve(results);
+                     });
+                  }
+             );
+
+             // console.log(response);  // for debugging to see the result of select
+             return response;
+
+         }  catch(error){
+            console.log(error);
+         }
+   }
+
+   async searchNeverSigned(){
+        try{
+             const dateToday= new Date();
+             // use await to call an asynchronous function
+             const response = await new Promise((resolve, reject) => 
+                  {
+                     const query = "SELECT * FROM users WHERE signintime IS NULL;";
+                     
+                     connection.query(query, [], (err, results) => {
                          if(err) reject(new Error(err.message));
                          else resolve(results);
                      });

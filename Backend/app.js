@@ -128,6 +128,37 @@ app.get('/searchsame/:name', (request, response) => { // we can debug by URL
     .catch(err => console.log(err));
 });
 
+app.get('/searchtoday', (request, response) => { // we can debug by URL
+    
+    const {} = request.params;
+    
+    console.log("today");
+
+    const db = dbService.getDbServiceInstance();
+
+    let result =  db.searchRegisteredToday(); // call a DB function
+
+    result
+    .then(data => response.json({data: data}))
+    .catch(err => console.log(err));
+});
+
+app.get('/searchnever', (request, response) => { // we can debug by URL
+    
+    const {} = request.params;
+    
+    console.log("never");
+
+    const db = dbService.getDbServiceInstance();
+
+    let result =  db.searchNeverSigned(); // call a DB function
+
+    result
+    .then(data => response.json({data: data}))
+    .catch(err => console.log(err));
+});
+
+
 
 app.get('/userpasssearch/:name/:pass', (request, response) => { // we can debug by URL
     
