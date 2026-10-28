@@ -379,7 +379,7 @@ function loadHTMLTable(data){
     const table = document.querySelector('table tbody'); 
     
     if(data.length === 0){
-        table.innerHTML = "<tr><td class='no-data' colspan='5'>No Data</td></tr>";
+        table.innerHTML = "<tr><td class='no-data' colspan='7'>No Data</td></tr>";
         return;
     }
   
@@ -409,21 +409,22 @@ function loadHTMLTable(data){
     data array.
     */
 
-    
+
     let tableHtml = "";
     data.forEach(function ({username, password, firstname, lastname, salary, age, registerday, signintime}){
-    console.log("started making table");
-            tableHtml += "<tr>";
-         tableHtml +=`<td>${username}</td>`;
-         tableHtml +=`<td>${firstname}</td>`;
-         tableHtml +=`<td>${lastname}</td>`;
-         tableHtml +=`<td>${salary}</td>`;
-         tableHtml +=`<td>${age}</td>`;
-         tableHtml +=`<td>${new Date(registerday).toLocaleString()}</td>`;
-         tableHtml +=`<td>${new Date(signintime).toLocaleString()}</td>`;
-         /*tableHtml +=`<td><button class="delete-row-btn" data-id=${id}>Delete</td>`;
-         tableHtml += `<td><button class="edit-row-btn" data-id=${id}>Edit</td>`;*/
-         tableHtml += "</tr>";
+
+        const formattedRegister = registerday ? new Date(registerday).toLocaleString() : "N/A";
+        const formattedSignIn = signintime ? new Date(signintime).toLocaleString() : "N/A";
+
+        tableHtml += "<tr>";
+        tableHtml +=`<td>${username}</td>`;
+        tableHtml +=`<td>${firstname}</td>`;
+        tableHtml +=`<td>${lastname}</td>`;
+        tableHtml +=`<td>${salary}</td>`;
+        tableHtml +=`<td>${age}</td>`;
+        tableHtml +=`<td>${formattedRegister}</td>`;
+        tableHtml +=`<td>${formattedSignIn}</td>`;
+        tableHtml += "</tr>";
     });
 
     table.innerHTML = tableHtml;
