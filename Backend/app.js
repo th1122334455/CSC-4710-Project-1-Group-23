@@ -68,6 +68,98 @@ app.get('/search/:name', (request, response) => { // we can debug by URL
     .catch(err => console.log(err));
 });
 
+app.get('/searchfirstname/:name', (request, response) => { // we can debug by URL
+    
+    const {name} = request.params;
+    
+    console.log(name);
+
+    const db = dbService.getDbServiceInstance();
+
+    let result =  db.searchByFirstName(name); // call a DB function
+
+    result
+    .then(data => response.json({data: data}))
+    .catch(err => console.log(err));
+});
+
+app.get('/searchlastname/:name', (request, response) => { // we can debug by URL
+    
+    const {name} = request.params;
+    
+    console.log(name);
+
+    const db = dbService.getDbServiceInstance();
+
+    let result =  db.searchByLastName(name); // call a DB function
+
+    result
+    .then(data => response.json({data: data}))
+    .catch(err => console.log(err));
+});
+
+app.get('/searchafter/:name', (request, response) => { // we can debug by URL
+    
+    const {name} = request.params;
+    
+    console.log(name);
+
+    const db = dbService.getDbServiceInstance();
+
+    let result =  db.searchRegisteredAfter(name); // call a DB function
+
+    result
+    .then(data => response.json({data: data}))
+    .catch(err => console.log(err));
+});
+
+app.get('/searchsame/:name', (request, response) => { // we can debug by URL
+    
+    const {name} = request.params;
+    
+    console.log(name);
+
+    const db = dbService.getDbServiceInstance();
+
+    let result =  db.searchRegisteredSame(name); // call a DB function
+
+    result
+    .then(data => response.json({data: data}))
+    .catch(err => console.log(err));
+});
+
+app.get('/searchtoday', (request, response) => { // we can debug by URL
+    
+    const {} = request.params;
+    
+    console.log("today");
+
+    const db = dbService.getDbServiceInstance();
+
+    let result =  db.searchRegisteredToday(); // call a DB function
+
+    result
+    .then(data => response.json({data: data}))
+    .catch(err => console.log(err));
+});
+
+app.get('/searchnever', (request, response) => { // we can debug by URL
+    
+    const {} = request.params;
+    
+    console.log("never");
+
+    const db = dbService.getDbServiceInstance();
+
+    let result =  db.searchNeverSigned(); // call a DB function
+
+    result
+    .then(data => response.json({data: data}))
+    .catch(err => console.log(err));
+});
+
+
+
 app.get('/userpasssearch/:name/:pass', (request, response) => { // we can debug by URL
     
     const {name, pass} = request.params;
@@ -77,6 +169,36 @@ app.get('/userpasssearch/:name/:pass', (request, response) => { // we can debug 
     const db = dbService.getDbServiceInstance();
 
     let result =  db.searchByNameAndPass(name, pass); // call a DB function
+
+    result
+    .then(data => response.json({data: data}))
+    .catch(err => console.log(err));
+});
+
+app.get('/searchsalary/:low/:high', (request, response) => { // we can debug by URL
+    
+    const {low, high} = request.params;
+    
+    console.log(low);
+
+    const db = dbService.getDbServiceInstance();
+
+    let result =  db.searchBySalary(Number(low), Number(high)); // call a DB function
+
+    result
+    .then(data => response.json({data: data}))
+    .catch(err => console.log(err));
+});
+
+app.get('/searchage/:low/:high', (request, response) => { // we can debug by URL
+    
+    const {low, high} = request.params;
+    
+    console.log(low);
+
+    const db = dbService.getDbServiceInstance();
+
+    let result =  db.searchByAge(Number(low), Number(high)); // call a DB function
 
     result
     .then(data => response.json({data: data}))

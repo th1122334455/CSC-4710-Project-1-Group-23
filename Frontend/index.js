@@ -96,8 +96,9 @@ useridBtn.onclick = function (){
     const searchInput = document.querySelector('#general-input');
     const searchValue = searchInput.value;
     const searchFeedback = document.getElementById("search-feedback");
+    if (searchValue != "") {
     searchFeedback.textContent = "Searching for username "+ searchValue;
-    
+    }
     searchInput.value = "";
         
     fetch('http://localhost:5050/search/' + searchValue)
@@ -105,9 +106,137 @@ useridBtn.onclick = function (){
     .then(data => loadHTMLTable(data['data']));
 }
 
+// when the first name button is clicked
+const firstBtn = document.getElementById('firstname-btn');
+firstBtn.onclick = function (){
+    const searchInput = document.querySelector('#general-input');
+    const searchValue = searchInput.value;
+    const searchFeedback = document.getElementById("search-feedback");
+    if (searchValue != "") {
+    searchFeedback.textContent = "Searching for first name "+ searchValue;
+    }
+    searchInput.value = "";
+        
+    fetch('http://localhost:5050/searchfirstname/' + searchValue)
+    .then(response => response.json())
+    .then(data => loadHTMLTable(data['data']));
+}
+
+// when the last name button is clicked
+const lastBtn = document.getElementById('lastname-btn');
+lastBtn.onclick = function (){
+    const searchInput = document.querySelector('#general-input');
+    const searchValue = searchInput.value;
+    const searchFeedback = document.getElementById("search-feedback");
+    if (searchValue != "") {
+    searchFeedback.textContent = "Searching for last name "+ searchValue;
+    }
+    searchInput.value = "";
+        
+    fetch('http://localhost:5050/searchlastname/' + searchValue)
+    .then(response => response.json())
+    .then(data => loadHTMLTable(data['data']));
+}
+
+// when the salary button is clicked
+const salaryBtn = document.getElementById('salary-btn');
+salaryBtn.onclick = function (){
+    const lowValue = document.querySelector('#lowerbound-input').value;
+    const highValue = document.querySelector('#upperbound-input').value;
+    const searchFeedback = document.getElementById("search-feedback");
+    if (lowValue === "" && highValue === "") {
+        return;
+    }
+
+    if (Number(lowValue) > Number(highValue)) {
+    searchFeedback.textContent = "Error: Lower bound must be lower than upper bound";
+    return;
+    }
+        
+    searchFeedback.textContent = "Searching for salaries between "+lowValue+" and "+highValue;
+    fetch('http://localhost:5050/searchsalary/' + lowValue + "/" + highValue)
+    .then(response => response.json())
+    .then(data => loadHTMLTable(data['data']));
+}
+
+// when the age button is clicked
+const ageBtn = document.getElementById('age-btn');
+ageBtn.onclick = function (){
+    const lowValue = document.querySelector('#lowerbound-input').value;
+    const highValue = document.querySelector('#upperbound-input').value;
+    const searchFeedback = document.getElementById("search-feedback");
+    if (lowValue === "" && highValue === "") {
+        return;
+    }
+
+    if (Number(lowValue) > Number(highValue)) {
+    searchFeedback.textContent = "Error: Lower bound must be lower than upper bound";
+    return;
+    }
+        
+    searchFeedback.textContent = "Searching for ages between "+lowValue+" and "+highValue;
+    fetch('http://localhost:5050/searchage/' + lowValue + "/" + highValue)
+    .then(response => response.json())
+    .then(data => loadHTMLTable(data['data']));
+}
+
+// when the registered after button is clicked
+const afterBtn = document.getElementById('registered-after-btn');
+afterBtn.onclick = function (){
+    const searchInput = document.querySelector('#userid-input');
+    const searchValue = searchInput.value;
+    const searchFeedback = document.getElementById("search-feedback");
+    if (searchValue != "") {
+    searchFeedback.textContent = "Searching for users who registered after "+ searchValue;
+    }
+    searchInput.value = "";
+        
+    fetch('http://localhost:5050/searchafter/' + searchValue)
+    .then(response => response.json())
+    .then(data => loadHTMLTable(data['data']));
+}
+
+// when the registered on the same day button is clicked
+const sameBtn = document.getElementById('registered-same-btn');
+sameBtn.onclick = function (){
+    const searchInput = document.querySelector('#userid-input');
+    const searchValue = searchInput.value;
+    const searchFeedback = document.getElementById("search-feedback");
+    if (searchValue != "") {
+    searchFeedback.textContent = "Searching for users who registered on the same day as "+ searchValue;
+    }
+    searchInput.value = "";
+        
+    fetch('http://localhost:5050/searchsame/' + searchValue)
+    .then(response => response.json())
+    .then(data => loadHTMLTable(data['data']));
+}
+
+// when the registered today button is clicked
+const todayBtn = document.getElementById('today-btn');
+todayBtn.onclick = function (){
+    const searchFeedback = document.getElementById("search-feedback");
+    searchFeedback.textContent = "Searching for users who registered today";
+        
+    fetch('http://localhost:5050/searchtoday')
+    .then(response => response.json())
+    .then(data => loadHTMLTable(data['data']));
+}
+
+// when the never signed in button is clicked
+const neverBtn = document.getElementById('never-btn');
+neverBtn.onclick = function (){
+    const searchFeedback = document.getElementById("search-feedback");
+    searchFeedback.textContent = "Searching for users who never signed in";
+        
+    fetch('http://localhost:5050/searchnever')
+    .then(response => response.json())
+    .then(data => loadHTMLTable(data['data']));
+}
+
 let rowToDelete; 
 
-// when the delete button is clicked, since it is not part of the DOM tree, we need to do it differently
+/* when the delete button is clicked, since it is not part of the DOM tree, we need to do it differently
 document.querySelector('table tbody').addEventListener('click', 
       function(event){
         if(event.target.className === "delete-row-btn"){
@@ -121,7 +250,7 @@ document.querySelector('table tbody').addEventListener('click',
             showEditRowInterface(event.target.dataset.id); // display the edit row interface
         }
       }
-);
+); */
 
 function deleteRowById(id){
     // debug(id);
