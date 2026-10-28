@@ -4,28 +4,56 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="stylesheet.css">
-  <title>DB Project 1 new</title>
+  <title>User Search</title>
 </head>
 <body>
   <main>
-      <label>Name:</label>
-      <input type="text" id="name-input">
-      <button id="add-name-btn">Add Name</button>
- 
-     <br><br><br>
+    <label>Search for Users</label> 
+    <br><br>
      <div> 
-        <input placeholder="search by name" id="search-input">
-        <button id="search-btn">Search</button>
+        <input placeholder="search by..." id="general-input">
+        <br>
+        <button id="userid-btn">ID</button>
+        <button id="firstname-btn">First Name</button>
+        <button id="lastname-btn">Last Name</button>
+        <br>
+        <br>
+        <label>Or search between: </label>
+        <br>
+        <input placeholder="lower bound" id="lowerbound-input">
+        <input placeholder="upper bound" id="upperbound-input">
+        <br>
+        <button id="salary-btn">Salary</button>
+        <button id="age-btn">Age</button>
+
+        <br><br>
+        <label>Or search for: </label>
+        <br>
+        <input placeholder="enter user id..." id="userid-input">
+        <br>
+        <button id="registered-after-btn">Users who registered after</button>
+        <br>
+        <button id="registered-same-btn">Users who registered on the same date</button>
+        <br><br>
+        <label>Extra search options:</label>
+        <br>
+        <button id="never-btn">Users who never signed in</button>
+        <br>
+        <button id="today-btn">Users who registered today</button>
+        <br><br><br>
+
      </div>
 
 
      <table id="table">
          <thead>
-             <th>Id</th>
-             <th>Name</th>
-             <th>Date Added</th>
-             <th>Delete</th>
-             <th>Edit</th>  
+             <th>Username |</th>
+             <th>First Name |</th>
+             <th>Last Name |</th>
+             <th>Salary |</th>
+             <th>Age |</th>  
+             <th>Registered |</th>
+             <th>Last Sign In |</th>    
          </thead>
          <tbody></tbody>
      </table>
@@ -35,6 +63,7 @@
          <input type="text" id="update-name-input">
          <button id="update-row-btn" value="">Update</button>
     </section>
+    <a href="signin.html">To signin</a>
 </main>
 <script src="index.js"></script>
 </body>

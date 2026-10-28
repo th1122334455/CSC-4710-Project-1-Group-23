@@ -92,7 +92,7 @@ class DbService{
            // use await to call an asynchronous function
            const response = await new Promise((resolve, reject) => 
               {
-                  const query = "SELECT * FROM names;";
+                  const query = "SELECT * FROM users;";
                   connection.query(query, 
                        (err, results) => {
                              if(err) reject(new Error(err.message));
