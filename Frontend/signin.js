@@ -35,6 +35,7 @@ function signIn(data) {
     const passwordInput = document.querySelector('#pass-input');
     if (data.length === 0) {
         signinFeedback.textContent = "Error: Either username or password is incorrect.";
+        console.log("caught wrong pass");
         return;
     }
 

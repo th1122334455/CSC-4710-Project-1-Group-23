@@ -281,7 +281,8 @@ function loadHTMLTable(data){
 
     let tableHtml = "";
     data.forEach(function ({username, password, firstname, lastname, salary, age, registerday, signintime}){
-         tableHtml += "<tr>";
+    console.log("started making table");
+            tableHtml += "<tr>";
          tableHtml +=`<td>${username}</td>`;
          tableHtml +=`<td>${firstname}</td>`;
          tableHtml +=`<td>${lastname}</td>`;
@@ -295,4 +296,5 @@ function loadHTMLTable(data){
     });
 
     table.innerHTML = tableHtml;
+    console.log("finished making table");
 }
