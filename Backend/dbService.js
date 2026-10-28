@@ -178,7 +178,6 @@ class DbService{
                      });
                   }
              );
-
              // console.log(response);  // for debugging to see the result of select
              return response;
 
@@ -222,6 +221,29 @@ class DbService{
                {
                   const query = "UPDATE names SET name = ? WHERE id = ?;";
                   connection.query(query, [newName, id], (err, result) => {
+                       if(err) reject(new Error(err.message));
+                       else resolve(result.affectedRows);
+                  });
+               }
+            );
+
+            // console.log(response);  // for debugging to see the result of select
+            return response === 1? true: false;
+      }  catch(error){
+         console.log(error);
+      }
+  }
+
+  async updateSignInDate(name){
+      try{
+           console.log("dbService: ");
+           console.log(name);
+           const dateAdded = new Date();
+           // use await to call an asynchronous function
+           const response = await new Promise((resolve, reject) => 
+               {
+                  const query = "UPDATE users SET signintime = ? WHERE username = ?;";
+                  connection.query(query, [dateAdded, name], (err, result) => {
                        if(err) reject(new Error(err.message));
                        else resolve(result.affectedRows);
                   });

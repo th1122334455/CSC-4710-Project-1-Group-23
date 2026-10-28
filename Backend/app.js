@@ -83,6 +83,21 @@ app.get('/userpasssearch/:name/:pass', (request, response) => { // we can debug 
     .catch(err => console.log(err));
 });
 
+app.get('/updatedate/:name/:pass', (request, response) => { // we can debug by URL
+    
+    const {name, pass} = request.params;
+    
+    console.log(name);
+
+    const db = dbService.getDbServiceInstance();
+
+    let result =  db.updateSignInDate(name); // call a DB function
+
+    result
+    .then(data => response.json({data: data}))
+    .catch(err => console.log(err));
+});
+
 
 // update
 app.patch('/update', 

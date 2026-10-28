@@ -282,7 +282,7 @@ function loadHTMLTable(data){
          tableHtml += "<tr>";
          tableHtml +=`<td>${username}</td>`;
          tableHtml +=`<td>${firstname}</td>`;
-         tableHtml +=`<td>${lastname}</td>`;
+         tableHtml +=`<td>${firstname}</td>`;
          tableHtml +=`<td>${salary}</td>`;
          tableHtml +=`<td>${age}</td>`;
          tableHtml +=`<td>${new Date(registerday).toLocaleString()}</td>`;
