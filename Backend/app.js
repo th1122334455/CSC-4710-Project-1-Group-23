@@ -20,10 +20,10 @@ app.post('/insert', (request, response) => {
     console.log("app: insert a row.");
     // console.log(request.body); 
 
-    const {name} = request.body;
+    const {username, firstname, lastname, password, salary, age} = request.body;
     const db = dbService.getDbServiceInstance();
 
-    const result = db.insertNewName(name);
+    const result = db.insertNewUser(username, firstname, lastname, password, salary, age);
  
     // note that result is a promise
     result 
@@ -62,6 +62,36 @@ app.get('/search/:name', (request, response) => { // we can debug by URL
        result = db.getAllData()
     else 
        result =  db.searchByName(name); // call a DB function
+
+    result
+    .then(data => response.json({data: data}))
+    .catch(err => console.log(err));
+});
+
+app.get('/userpasssearch/:name/:pass', (request, response) => { // we can debug by URL
+    
+    const {name, pass} = request.params;
+    
+    console.log(name);
+
+    const db = dbService.getDbServiceInstance();
+
+    let result =  db.searchByNameAndPass(name, pass); // call a DB function
+
+    result
+    .then(data => response.json({data: data}))
+    .catch(err => console.log(err));
+});
+
+app.get('/updatedate/:name/:pass', (request, response) => { // we can debug by URL
+    
+    const {name, pass} = request.params;
+    
+    console.log(name);
+
+    const db = dbService.getDbServiceInstance();
+
+    let result =  db.updateSignInDate(name); // call a DB function
 
     result
     .then(data => response.json({data: data}))

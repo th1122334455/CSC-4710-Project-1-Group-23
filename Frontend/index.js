@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 // when the addBtn is clicked
-const addBtn = document.querySelector('#add-name-btn');
+const addBtn = document.querySelector('#add-user-btn');
 addBtn.onclick = function (){
     const nameInput = document.querySelector('#name-input');
     const name = nameInput.value;
@@ -90,16 +90,18 @@ addBtn.onclick = function (){
     .then(data => insertRowIntoTable(data['data']));
 }
 
-// when the searchBtn is clicked
-const searchBtn =  document.querySelector('#search-btn');
-searchBtn.onclick = function (){
-    const searchInput = document.querySelector('#search-input');
+// when the username button is clicked
+const useridBtn = document.getElementById('userid-btn');
+useridBtn.onclick = function (){
+    const searchFeedback = document.querySelector("search-feedback");
+    searchFeedback.textContent = "aa";
+    const searchInput = document.querySelector('#general-input');
     const searchValue = searchInput.value;
     searchInput.value = "";
-
+        /*
     fetch('http://localhost:5050/search/' + searchValue)
     .then(response => response.json())
-    .then(data => loadHTMLTable(data['data']));
+    .then(data => loadHTMLTable(data['data']));*/
 }
 
 let rowToDelete; 
@@ -279,18 +281,20 @@ function loadHTMLTable(data){
 
     let tableHtml = "";
     data.forEach(function ({username, password, firstname, lastname, salary, age, registerday, signintime}){
-         tableHtml += "<tr>";
+    console.log("started making table");
+            tableHtml += "<tr>";
          tableHtml +=`<td>${username}</td>`;
          tableHtml +=`<td>${firstname}</td>`;
          tableHtml +=`<td>${lastname}</td>`;
          tableHtml +=`<td>${salary}</td>`;
          tableHtml +=`<td>${age}</td>`;
-        /* tableHtml +=`<td>${new Date(registerday).toLocaleString()}</td>`;
-         tableHtml +=`<td>${new Date(signintime).toLocaleString()}</td>`; */
+         tableHtml +=`<td>${new Date(registerday).toLocaleString()}</td>`;
+         tableHtml +=`<td>${new Date(signintime).toLocaleString()}</td>`;
          /*tableHtml +=`<td><button class="delete-row-btn" data-id=${id}>Delete</td>`;
          tableHtml += `<td><button class="edit-row-btn" data-id=${id}>Edit</td>`;*/
          tableHtml += "</tr>";
     });
 
     table.innerHTML = tableHtml;
+    console.log("finished making table");
 }

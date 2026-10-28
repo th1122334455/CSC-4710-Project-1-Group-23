@@ -112,14 +112,14 @@ class DbService{
    }
 
 
-   async insertNewName(name){
+   async insertNewUser(username, firstname, lastname, password, salary, age){
          try{
             const dateAdded = new Date();
             // use await to call an asynchronous function
             const insertId = await new Promise((resolve, reject) => 
             {
-               const query = "INSERT INTO names (name, date_added) VALUES (?, ?);";
-               connection.query(query, [name, dateAdded], (err, result) => {
+               const query = "INSERT INTO users (username, firstname, lastname, password, salary, age, registerday, signintime) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
+               connection.query(query, [username, firstname, lastname, password, salary, age, dateAdded, null], (err, result) => {
                    if(err) reject(new Error(err.message));
                    else resolve(result.insertId);
                });
@@ -127,7 +127,12 @@ class DbService{
             console.log(insertId);  // for debugging to see the result of select
             return{
                  id: insertId,
-                 name: name,
+                 username: username,
+                 firstname: firstname,
+                 lastname: lastname,
+                 password: password,
+                 salary: salary,
+                 age: age,
                  dateAdded: dateAdded
             }
          } catch(error){
@@ -144,7 +149,7 @@ class DbService{
              // use await to call an asynchronous function
              const response = await new Promise((resolve, reject) => 
                   {
-                     const query = "SELECT * FROM names where name = ?;";
+                     const query = "SELECT * FROM users where username = ?;";
                      connection.query(query, [name], (err, results) => {
                          if(err) reject(new Error(err.message));
                          else resolve(results);
@@ -159,6 +164,28 @@ class DbService{
             console.log(error);
          }
    }
+
+   async searchByNameAndPass(name, pass){
+        try{
+             const dateAdded = new Date();
+             // use await to call an asynchronous function
+             const response = await new Promise((resolve, reject) => 
+                  {
+                     const query = "SELECT * FROM users where username = ? AND password = ?;";
+                     connection.query(query, [name,pass], (err, results) => {
+                         if(err) reject(new Error(err.message));
+                         else resolve(results);
+                     });
+                  }
+             );
+             // console.log(response);  // for debugging to see the result of select
+             return response;
+
+         }  catch(error){
+            console.log(error);
+         }
+   }
+
 
    async deleteRowById(id){
          try{
@@ -194,6 +221,29 @@ class DbService{
                {
                   const query = "UPDATE names SET name = ? WHERE id = ?;";
                   connection.query(query, [newName, id], (err, result) => {
+                       if(err) reject(new Error(err.message));
+                       else resolve(result.affectedRows);
+                  });
+               }
+            );
+
+            // console.log(response);  // for debugging to see the result of select
+            return response === 1? true: false;
+      }  catch(error){
+         console.log(error);
+      }
+  }
+
+  async updateSignInDate(name){
+      try{
+           console.log("dbService: ");
+           console.log(name);
+           const dateAdded = new Date();
+           // use await to call an asynchronous function
+           const response = await new Promise((resolve, reject) => 
+               {
+                  const query = "UPDATE users SET signintime = ? WHERE username = ?;";
+                  connection.query(query, [dateAdded, name], (err, result) => {
                        if(err) reject(new Error(err.message));
                        else resolve(result.affectedRows);
                   });

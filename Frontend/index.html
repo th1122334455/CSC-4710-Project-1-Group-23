@@ -9,11 +9,13 @@
 <body>
   <main>
     <label>Search for Users</label> 
-    <br><br>
+    <br>
+    <label id="search-feedback"></label>
+    <br>
      <div> 
         <input placeholder="search by..." id="general-input">
         <br>
-        <button id="userid-btn">ID</button>
+        <button id="userid-btn">Username</button>
         <button id="firstname-btn">First Name</button>
         <button id="lastname-btn">Last Name</button>
         <br>
@@ -40,10 +42,15 @@
         <button id="never-btn">Users who never signed in</button>
         <br>
         <button id="today-btn">Users who registered today</button>
-        <br><br><br>
+        <br><br>
 
      </div>
 
+     
+    <a href="signin.html">To signin</a>
+    <br>
+    <br>
+    <br>
 
      <table id="table">
          <thead>
@@ -63,7 +70,6 @@
          <input type="text" id="update-name-input">
          <button id="update-row-btn" value="">Update</button>
     </section>
-    <a href="signin.html">To signin</a>
 </main>
 <script src="index.js"></script>
 </body>

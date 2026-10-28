@@ -9,13 +9,40 @@
 <body>
   <main>
       <label>Username:</label>
-      <input type="text" id="name-input">
+      <input type="text" id="user-input">
      <br>
       <label>Password:</label>
-      <input type="text" id="name-input">
+      <input type="text" id="pass-input">
     <br>
-    <button id="sign-in-button">Sign In</button> <button id="register-button">Register</button>
+    <button id="sign-in-button">Sign In</button> <br><br>
+
+    <label id="sign-in-feedback"></label>
+    
     <br><br>
+    <label>If registering, please fill out these fields as well:</label>
+    <br>
+      <label>First Name:</label>
+      <input type="text" id="first-input">
+    <br>
+      <label>Last Name:</label>
+      <input type="text" id="last-input">
+      <br>
+      <br>
+      <label>Age:</label>
+      <input type="number" min="1" max="200" step="1" id="age-input">
+      <br>
+      <label>Salary:</label>
+      <input type="number" min="0" id="salary-input">
+<br><br>
+      <label>Password (again):</label>
+      <input type="text" id="passconfirm-input">
+      <br>
+    <button id="register-button">Register</button>
+    <br><br>
+
+    <label id="register-feedback"></label>
+    <br><br>
+
     <a href="index.html">To index</a>
 </main>
 <script src="signin.js"></script>
