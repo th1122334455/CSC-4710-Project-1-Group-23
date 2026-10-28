@@ -1,0 +1,47 @@
+Thomas Errico-Seaman
+Abubakar Babatunde
+Project 1
+
+Here are the SQL statements we used in our project. 
+
+
+Creating the database:
+
+CREATE TABLE Users(
+   username VARCHAR(50) primary key,
+   password VARCHAR(50),
+   firstname VARCHAR(50),
+   lastname VARCHAR(50),
+   salary FLOAT,
+   age INTEGER,
+   registerday DATE,
+   signintime DATETIME
+) 
+
+
+Signing in, making sure both the username and password are correct:
+
+SELECT * FROM users where username = ? AND password = ?
+
+
+Registering a new user:
+
+INSERT INTO users (username, firstname, lastname, password, salary, age, registerday, signintime) VALUES (?, ?, ?, ?, ?, ?, ?, ?);
+
+
+Updating a user's most recent time signing in:
+
+UPDATE users SET signintime = ? WHERE username = ?;
+
+
+Various SQL statements for searching through users:
+
+SELECT * FROM users where username = ?;
+SELECT * FROM users where firstname = ?;
+SELECT * FROM users where lastname = ?;
+SELECT * FROM users where salary >= ? AND salary <= ?;
+SELECT * FROM users where age >= ? AND age <= ?;
+SELECT * FROM users WHERE registerday > (SELECT registerday FROM users WHERE username = ?);
+SELECT * FROM users WHERE registerday = (SELECT registerday FROM users WHERE username = ?);
+SELECT * FROM users WHERE registerday = ?;
+SELECT * FROM users WHERE signintime IS NULL;
