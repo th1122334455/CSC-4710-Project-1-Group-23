@@ -68,6 +68,44 @@ app.get('/search/:name', (request, response) => { // we can debug by URL
     .catch(err => console.log(err));
 });
 
+app.get('/searchfirstname/:name', (request, response) => { // we can debug by URL
+    
+    const {name} = request.params;
+    
+    console.log(name);
+
+    const db = dbService.getDbServiceInstance();
+
+    let result;
+    if(name === "all") // in case we want to search all
+       result = db.getAllData()
+    else 
+       result =  db.searchByFirstName(name); // call a DB function
+
+    result
+    .then(data => response.json({data: data}))
+    .catch(err => console.log(err));
+});
+
+app.get('/searchlastname/:name', (request, response) => { // we can debug by URL
+    
+    const {name} = request.params;
+    
+    console.log(name);
+
+    const db = dbService.getDbServiceInstance();
+
+    let result;
+    if(name === "all") // in case we want to search all
+       result = db.getAllData()
+    else 
+       result =  db.searchByLastName(name); // call a DB function
+
+    result
+    .then(data => response.json({data: data}))
+    .catch(err => console.log(err));
+});
+
 app.get('/userpasssearch/:name/:pass', (request, response) => { // we can debug by URL
     
     const {name, pass} = request.params;
