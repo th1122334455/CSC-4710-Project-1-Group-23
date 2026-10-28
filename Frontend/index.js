@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 // when the addBtn is clicked
-const addBtn = document.querySelector('#add-name-btn');
+const addBtn = document.querySelector('#add-user-btn');
 addBtn.onclick = function (){
     const nameInput = document.querySelector('#name-input');
     const name = nameInput.value;
@@ -285,8 +285,8 @@ function loadHTMLTable(data){
          tableHtml +=`<td>${lastname}</td>`;
          tableHtml +=`<td>${salary}</td>`;
          tableHtml +=`<td>${age}</td>`;
-        /* tableHtml +=`<td>${new Date(registerday).toLocaleString()}</td>`;
-         tableHtml +=`<td>${new Date(signintime).toLocaleString()}</td>`; */
+         tableHtml +=`<td>${new Date(registerday).toLocaleString()}</td>`;
+         tableHtml +=`<td>${new Date(signintime).toLocaleString()}</td>`;
          /*tableHtml +=`<td><button class="delete-row-btn" data-id=${id}>Delete</td>`;
          tableHtml += `<td><button class="edit-row-btn" data-id=${id}>Edit</td>`;*/
          tableHtml += "</tr>";
