@@ -208,6 +208,51 @@ class DbService{
             console.log(error);
          }
    }
+   async searchRegisteredAfter(user){
+        try{
+             const dateAdded = new Date();
+             // use await to call an asynchronous function
+             const response = await new Promise((resolve, reject) => 
+                  {
+                     const query = "SELECT * FROM users WHERE registerday < (SELECT registerday FROM users WHERE username = ?);";
+                     
+                     connection.query(query, [user], (err, results) => {
+                         if(err) reject(new Error(err.message));
+                         else resolve(results);
+                     });
+                  }
+             );
+
+             // console.log(response);  // for debugging to see the result of select
+             return response;
+
+         }  catch(error){
+            console.log(error);
+         }
+   }
+
+      async searchRegisteredSame(user){
+        try{
+             const dateAdded = new Date();
+             // use await to call an asynchronous function
+             const response = await new Promise((resolve, reject) => 
+                  {
+                     const query = "SELECT * FROM users WHERE registerday = (SELECT registerday FROM users WHERE username = ?);";
+                     
+                     connection.query(query, [user], (err, results) => {
+                         if(err) reject(new Error(err.message));
+                         else resolve(results);
+                     });
+                  }
+             );
+
+             // console.log(response);  // for debugging to see the result of select
+             return response;
+
+         }  catch(error){
+            console.log(error);
+         }
+   }
 
    async searchByNameAndPass(name, pass){
         try{
@@ -217,6 +262,48 @@ class DbService{
                   {
                      const query = "SELECT * FROM users where username = ? AND password = ?;";
                      connection.query(query, [name,pass], (err, results) => {
+                         if(err) reject(new Error(err.message));
+                         else resolve(results);
+                     });
+                  }
+             );
+             // console.log(response);  // for debugging to see the result of select
+             return response;
+
+         }  catch(error){
+            console.log(error);
+         }
+   }
+
+   async searchBySalary(low, high){
+        try{
+             const dateAdded = new Date();
+             // use await to call an asynchronous function
+             const response = await new Promise((resolve, reject) => 
+                  {
+                     const query = "SELECT * FROM users where salary >= ? AND salary <= ?;";
+                     connection.query(query, [low,high], (err, results) => {
+                         if(err) reject(new Error(err.message));
+                         else resolve(results);
+                     });
+                  }
+             );
+             // console.log(response);  // for debugging to see the result of select
+             return response;
+
+         }  catch(error){
+            console.log(error);
+         }
+   }
+
+   async searchByAge(low, high){
+        try{
+             const dateAdded = new Date();
+             // use await to call an asynchronous function
+             const response = await new Promise((resolve, reject) => 
+                  {
+                     const query = "SELECT * FROM users where age >= ? AND age <= ?;";
+                     connection.query(query, [low,high], (err, results) => {
                          if(err) reject(new Error(err.message));
                          else resolve(results);
                      });
