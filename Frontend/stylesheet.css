@@ -1,0 +1,219 @@
+/* --- Global Styles --- */
+:root {
+  --primary-color: #2c3e50;
+  --secondary-color: #3498db;
+  --background-color: #f8f9fa;
+  --surface-color: #ffffff;
+  --text-color: #333333;
+  --border-color: #dee2e6;
+  --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --border-radius: 4px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--background-color);
+  color: var(--text-color);
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+main {
+  max-width: 800px;
+  margin: var(--spacing-lg) auto;
+  padding: var(--spacing-lg);
+  background-color: var(--surface-color);
+  border-radius: var(--border-radius);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* --- Typography --- */
+label {
+  font-weight: 500;
+  display: inline-block;
+  margin-bottom: var(--spacing-sm);
+  color: var(--primary-color);
+}
+
+br {
+  line-height: 1.5; /* Adjust spacing for breaks */
+}
+
+/* --- Form Elements --- */
+input[type="text"],
+input[type="number"],
+input[type="password"] {
+  width: 100%;
+  max-width: 300px;
+  padding: 10px;
+  margin-bottom: var(--spacing-md);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  font-size: 16px; /* Prevents zoom on mobile */
+  transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+input[type="password"]:focus {
+  outline: none;
+  border-color: var(--secondary-color);
+  box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+}
+
+/* --- Buttons --- */
+button {
+  background-color: var(--secondary-color);
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  margin-right: var(--spacing-sm);
+  margin-bottom: var(--spacing-md);
+  transition: background-color 0.2s ease;
+}
+
+button:hover {
+  background-color: #2980b9;
+}
+
+button:active {
+  background-color: #21618c;
+}
+
+/* --- Links --- */
+a {
+  color: var(--secondary-color);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: #21618c;
+  text-decoration: underline;
+}
+
+/* --- Feedback Messages --- */
+#sign-in-feedback,
+#register-feedback,
+#search-feedback {
+  display: block;
+  margin: var(--spacing-sm) 0;
+  font-size: 14px;
+  color: #e74c3c; /* Default error color */
+}
+
+/* Override for success messages (applied dynamically via JS is better, but this is a fallback) */
+#sign-in-feedback:contains("signed in"),
+#register-feedback:contains("Successfully") {
+  color: #27ae60;
+}
+
+/* --- Table Styles --- */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: var(--spacing-lg);
+  font-size: 14px;
+}
+
+thead {
+  background-color: #f1f3f5;
+  border-bottom: 2px solid var(--border-color);
+}
+
+th {
+  text-align: left;
+  padding: 12px var(--spacing-sm);
+  font-weight: 600;
+  color: var(--primary-color);
+  white-space: nowrap;
+}
+
+td {
+  padding: 10px var(--spacing-sm);
+  border-bottom: 1px solid var(--border-color);
+  vertical-align: middle;
+}
+
+tbody tr:hover {
+  background-color: #f8f9fa;
+}
+
+/* --- Sign In Page Specific Layout --- */
+/* Grouping labels and inputs for better spacing */
+/* We can't easily target specific elements without classes, so we rely on the general flow */
+
+/* Add visual separation between sections on the signin page */
+main > label,
+main > input,
+main > button {
+  display: block;
+}
+
+/* Reduce margin for inputs that are inline with labels */
+label + input {
+  display: inline-block;
+  margin-left: var(--spacing-sm);
+  margin-bottom: var(--spacing-sm);
+}
+
+/* Add some vertical space between major sections */
+main > br + br {
+  margin-bottom: var(--spacing-lg);
+}
+
+/* --- Index Page Specific Layout --- */
+/* The layout is already fairly structured, but we can refine it */
+#general-input {
+  max-width: 400px;
+}
+
+#lowerbound-input,
+#upperbound-input {
+  max-width: 150px;
+  display: inline-block;
+}
+
+/* Style the search sections to be more distinct */
+main > div {
+  margin-bottom: var(--spacing-lg);
+}
+
+/* Remove the default margin from the last paragraph-like element */
+main > a:last-of-type {
+  display: block;
+  margin-top: var(--spacing-lg);
+  margin-bottom: 0;
+}
+
+/* Clean up the table headers (remove the pipe characters added in HTML) */
+thead th {
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Specific adjustment for the last sign in column to handle potential nulls gracefully */
+td:last-child {
+  font-style: italic;
+  color: #7f8c8d;
+}
+
+/* Hide the update section as it's not used in the current UI */
+#update-row {
+  display: none;
+}
