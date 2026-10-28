@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
-// when the addBtn is clicked
+/* when the addBtn is clicked
 const addBtn = document.querySelector('#add-user-btn');
 addBtn.onclick = function (){
     const nameInput = document.querySelector('#name-input');
@@ -88,20 +88,21 @@ addBtn.onclick = function (){
     })
     .then(response => response.json())
     .then(data => insertRowIntoTable(data['data']));
-}
+} */
 
 // when the username button is clicked
 const useridBtn = document.getElementById('userid-btn');
 useridBtn.onclick = function (){
-    const searchFeedback = document.querySelector("search-feedback");
-    searchFeedback.textContent = "aa";
     const searchInput = document.querySelector('#general-input');
     const searchValue = searchInput.value;
+    const searchFeedback = document.getElementById("search-feedback");
+    searchFeedback.textContent = "Searching for username "+ searchValue;
+    
     searchInput.value = "";
-        /*
+        
     fetch('http://localhost:5050/search/' + searchValue)
     .then(response => response.json())
-    .then(data => loadHTMLTable(data['data']));*/
+    .then(data => loadHTMLTable(data['data']));
 }
 
 let rowToDelete; 
@@ -279,6 +280,7 @@ function loadHTMLTable(data){
     data array.
     */
 
+    
     let tableHtml = "";
     data.forEach(function ({username, password, firstname, lastname, salary, age, registerday, signintime}){
     console.log("started making table");
